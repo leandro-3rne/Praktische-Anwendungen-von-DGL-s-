@@ -10,8 +10,8 @@ b = 0.5;    % Dämpfungskoeffizient [b_kritisch = 2 * m * sqrt(g/L)]
 
 % Abgeleitete Grössen
 omega0 = sqrt(g/L);                 % Eigenfrequenz (ungedämpft)
-gamma = b / (2*m);                  % Dämpfungskonstante
-omegaD = sqrt(omega0^2 - gamma^2);  % gedämpfte Eigenfrequenz
+delta = b / (2*m);                  % Dämpfungskonstante
+omegaD = sqrt(omega0^2 - delta^2);  % gedämpfte Eigenfrequenz
 
 % Anfangsbedingungen
 theta0 = pi/3;  % Startwinkel
@@ -25,10 +25,10 @@ t = linspace(0, 20, 2000);
 
 % Koeffizienten aus Anfangsbedingungen
 A = theta0;
-B = (dtheta0 + gamma*theta0) / omegaD;
+B = (dtheta0 + delta*theta0) / omegaD;
 
 % Analytische homogene Lösung
-theta_hom = exp(-gamma*t) .* (A*cos(omegaD*t) + B*sin(omegaD*t));
+theta_hom = exp(-delta*t) .* (A*cos(omegaD*t) + B*sin(omegaD*t));
 
 
 % -- Numerische Lösung mit ode45 --
