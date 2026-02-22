@@ -108,7 +108,7 @@ Das Pendel kehrt **so schnell wie möglich** in die Ruhelage zurück, ohne zu sc
 
 Die Wurzeln sind **zwei negative reelle Zahlen** $\lambda_1, \lambda_2 < 0$. Die Lösung ist eine Summe zweier Exponentialfunktionen:
 
-$$\theta(t) = A e^{(-δ+\mu)*t} + B e^{(-δ-\mu)*t}$$
+$$\theta(t) = A e^{(-δ+\mu)t} + B e^{(-δ-\mu)t}$$
 
 Das Pendel kriecht langsam in die Ruhelage, kein Schwingen. Langsamer als kritische Dämpfung.
 
