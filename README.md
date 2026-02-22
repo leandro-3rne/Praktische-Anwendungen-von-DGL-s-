@@ -116,7 +116,7 @@ Das Pendel kriecht langsam in die Ruhelage, kein Schwingen. Langsamer als kritis
 | Antriebskräfte | Nur bestimmte Formen | Beliebige Funktionen |
 | Genauigkeit | Exakt (für das genäherte Modell) | Numerisch (sehr genau) |
 
-Für kleine Startwinkel (z.B. $\theta_0 = 10°$) stimmen beide Lösungen sehr gut überein. Bei grossen Winkeln (z.B. $\theta_0 = 60°$) weichen sie merklich ab – der Visualisierungseffekt macht die Grenzen der Kleinwinkel-Näherung direkt sichtbar.
+Für kleine Startwinkel (z.B. $\theta_0 = 30°$) stimmen beide Lösungen sehr gut überein. Bei grossen Winkeln (z.B. $\theta_0 = 60°+$) weichen sie merklich ab – der Visualisierungseffekt macht die Grenzen der Kleinwinkel-Näherung direkt sichtbar.
 
 ### Numerische Methode: Zustandsraumdarstellung
 
@@ -161,18 +161,6 @@ Das Projekt zeigt insbesondere das Phänomen der **Resonanz** bei $\Omega = \ome
 
 ---
 
-## Bezug zur Vorlesung (Ziltener, Kapitel 7)
-
-| Thema | Abschnitt im Skript |
-|---|---|
-| Definition GDG, Anfangswertproblem | 7.1 |
-| Linearität, Homogenität, charakteristisches Polynom | 7.2 |
-| Homogene GDG 2. Ordnung, freier gedämpfter Oszillator | 7.3 |
-| Inhomogene GDG, elektrischer Schwingkreis | 7.4 |
-| System von GDGs, Zustandsraumdarstellung | 7.5 |
-
----
-
 ## Verwendung
 
 ```matlab
@@ -188,11 +176,6 @@ dtheta0 = 0;      % Startgeschwindigkeit [rad/s]
 run('pendel_sim.m')
 ```
 
-Abbruch der Simulation: **Ctrl + C** im Command Window.
-
----
-
 ## Voraussetzungen
 
-- MATLAB (getestet mit R2023a+)
-- Keine zusätzlichen Toolboxes notwendig
+- MATLAB (getestet mit R2025a)
