@@ -22,7 +22,7 @@ Dieses Repository enthält MATLAB-Simulationen zu **linearen gewöhnlichen Diffe
 
 Eine **gewöhnliche Differentialgleichung (GDG)** der Ordnung $n$ für eine Funktion $u: I \to \mathbb{R}$ ist eine Gleichung der Form:
 
-$$\omega\big(t,\, u(t),\, \dot{u}(t),\, \ldots,\, u^{(n)}(t)\big) = 0, \quad t \in I$$
+$$\phi\big(t,\, u(t),\, \dot{u}(t),\, \ldots,\, u^{(n)}(t)\big) = 0, \quad t \in I$$
 
 Eine GDG heisst **linear**, wenn sie die Form
 
@@ -72,39 +72,39 @@ $$\lambda^2 + \frac{b}{m}\lambda + \frac{g}{L} = 0$$
 
 mit den Wurzeln:
 
-$$\lambda_{1,2} = -\gamma \pm \sqrt{\gamma^2 - \omega_0^2}$$
+$$\lambda_{1,2} = -\δ \pm \sqrt{\δ^2 - \omega_0^2}$$
 
-wobei $\gamma = \frac{b}{2m}$ die Dämpfungskonstante und $\omega_0 = \sqrt{\frac{g}{L}}$ die Eigenfrequenz ist.
+wobei $\δ = \frac{b}{2m}$ die Dämpfungskonstante und $\omega_0 = \sqrt{\frac{g}{L}}$ die Eigenfrequenz ist.
 
 ### Die drei Dämpfungsfälle
 
-Das Vorzeichen der Diskriminante $\gamma^2 - \omega_0^2$ bestimmt das qualitative Verhalten:
+Das Vorzeichen der Diskriminante $\δ^2 - \omega_0^2$ bestimmt das qualitative Verhalten:
 
 #### 1. Unterdämpfung: $\gamma < \omega_0$
 
 Die Wurzeln $\lambda_{1,2}$ sind **komplex**, was zu einer gedämpften Schwingung führt. Die gedämpfte Eigenfrequenz ist:
 
-$$\omega_D = \sqrt{\omega_0^2 - \gamma^2}$$
+$$\omega_D = \sqrt{\omega_0^2 - \δ^2}$$
 
 Die analytische Lösung lautet:
 
-$$\theta(t) = e^{-\gamma t}\big(A\cos(\omega_D t) + B\sin(\omega_D t)\big)$$
+$$\theta(t) = e^{-\δ t}\big(A\cos(\omega_D t) + B\sin(\omega_D t)\big)$$
 
 Das Pendel schwingt mit abnehmender Amplitude aus. $A$ und $B$ werden aus den Anfangsbedingungen bestimmt:
 
-$$A = \theta_0, \qquad B = \frac{\dot{\theta}_0 + \gamma\theta_0}{\omega_D}$$
+$$A = \theta_0, \qquad B = \frac{\dot{\theta}_0 + \δ\theta_0}{\omega_D}$$
 
 #### 2. Kritische Dämpfung: $\gamma = \omega_0$
 
-Die Diskriminante ist null, es gibt eine **doppelte reelle Wurzel** $\lambda = -\gamma$. Die Lösungsformel ändert sich grundlegend:
+Die Diskriminante ist null, es gibt eine **doppelte reelle Wurzel** $\lambda = -\δ$. Die Lösungsformel ändert sich grundlegend:
 
-$$\theta(t) = (A + Bt)\,e^{-\gamma t}$$
+$$\theta(t) = (A + Bt)\,e^{-\δ t}$$
 
 Das Pendel kehrt **so schnell wie möglich** in die Ruhelage zurück, ohne zu schwingen. Dies ist der Übergangsfall zwischen Schwingung und kriechender Rückkehr.
 
 > **Achtung im Code:** Bei $\omega_D = 0$ gibt es eine Division durch null in der Formel für $B$ der Unterdämpfung. Ein `if`-Sonderfall ist notwendig.
 
-#### 3. Überdämpfung: $\gamma > \omega_0$
+#### 3. Überdämpfung: $\δ > \omega_0$
 
 Die Wurzeln sind **zwei negative reelle Zahlen** $\lambda_1, \lambda_2 < 0$. Die Lösung ist eine Summe zweier Exponentialfunktionen:
 
@@ -141,7 +141,7 @@ Dies ist das Prinzip der **Zustandsraumdarstellung**, das in der Regelungstechni
 | `m` – Masse [kg] | Trägheit des Systems | Induktivität $L$ [H] |
 | `b` – Dämpfung [kg/s] | Reibung im Medium (Luft < Wasser < Öl) | Widerstand $R$ [Ω] |
 | `L` – Länge [m] | Bestimmt $\omega_0$ | Kapazität $C$ [F] |
-| `gamma` – Dämpfungskonstante | Wie schnell Einhüllende $e^{-\gamma t}$ abfällt | $\frac{R}{2L}$ |
+| `δ` – Dämpfungskonstante | Wie schnell Einhüllende $e^{-\δ t}$ abfällt | $\frac{R}{2L}$ |
 | `omega0` – Eigenfrequenz | Schwingfrequenz ohne Dämpfung | $\frac{1}{\sqrt{LC}}$ |
 
 ---
