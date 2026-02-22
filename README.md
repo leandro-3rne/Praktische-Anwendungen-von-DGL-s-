@@ -134,16 +134,6 @@ $$\dot{z}_2 = -\frac{b}{m}z_2 - \frac{g}{L}\sin(z_1)$$
 
 Dies ist das Prinzip der **Zustandsraumdarstellung**, das in der Regelungstechnik und Elektrotechnik zentral ist. Allgemein lässt sich jede GDG $n$-ter Ordnung in $n$ gekoppelte GDGs erster Ordnung umschreiben.
 
-### Parameter und ihre physikalische Bedeutung
-
-| Parameter | Bedeutung | Analogie RLC |
-|---|---|---|
-| `m` – Masse [kg] | Trägheit des Systems | Induktivität $L$ [H] |
-| `b` – Dämpfung [kg/s] | Reibung im Medium (Luft < Wasser < Öl) | Widerstand $R$ [Ω] |
-| `L` – Länge [m] | Bestimmt $\omega_0$ | Kapazität $C$ [F] |
-| `δ` – Dämpfungskonstante | Wie schnell Einhüllende $e^{-δ t}$ abfällt | $\frac{R}{2L}$ |
-| `omega0` – Eigenfrequenz | Schwingfrequenz ohne Dämpfung | $\frac{1}{\sqrt{LC}}$ |
-
 ---
 
 ## Projekt 2: RLC-Schwingkreis *(coming soon)*
@@ -163,6 +153,16 @@ Dies ist dieselbe mathematische Struktur wie beim Pendel – mit rechter Seite $
 $$I(t) = I_{\text{hom}}(t) + I_{\text{part}}(t)$$
 
 Das Projekt zeigt insbesondere das Phänomen der **Resonanz** bei $\Omega = \omega_0 = \frac{1}{\sqrt{LC}}$, wo die Amplitude der partikulären Lösung maximal wird.
+
+### Parameter und ihre physikalische Bedeutung
+
+| Parameter | Bedeutung | Analogie RLC |
+|---|---|---|
+| `m` – Masse [kg] | Trägheit des Systems | Induktivität $L$ [H] |
+| `b` – Dämpfung [kg/s] | Reibung im Medium (Luft < Wasser < Öl) | Widerstand $R$ [Ω] |
+| `L` – Länge [m] | Bestimmt $\omega_0$ | Kapazität $C$ [F] |
+| `δ` – Dämpfungskonstante | Wie schnell Einhüllende $e^{-δ t}$ abfällt | $\frac{R}{2L}$ |
+| `omega0` – Eigenfrequenz | Schwingfrequenz ohne Dämpfung | $\frac{1}{\sqrt{LC}}$ |
 
 ---
 
