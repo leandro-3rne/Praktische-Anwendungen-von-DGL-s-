@@ -43,6 +43,8 @@ $$u(t) = \underbrace{u_{\text{hom}}(t)}_{\text{klingt ab}} + \underbrace{u_{\tex
 
 ## Projekt 1: Gedämpftes Pendel (`pendel_sim.m`)
 
+![Dämpfungsvergleich](images/pendel_plot.png), ![Animation Pendel](images/pendel_animation.png)
+
 ### Physikalisches Modell
 
 Das Pendel der Masse $m$, Länge $L$ in einem Medium mit Dämpfungskonstante $b$ folgt aus dem zweiten Newtonschen Gesetz und dem Stokesschen Reibungsgesetz:
