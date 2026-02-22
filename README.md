@@ -26,9 +26,9 @@ $$\varphi\big(t,\, u(t),\, \dot{u}(t),\, \ldots,\, u^{(n)}(t)\big) = 0, \quad t 
 
 Eine GDG heisst **linear**, wenn sie die Form
 
-$$u^{(n)} + a_{n-1}(t)\,u^{(n-1)} + \cdots + a_1(t)\,\dot{u} + a_0(t)\,u = b(t)$$
+$$u^{(n)} + a_{n-1}(t)\,u^{(n-1)} + \cdots + a_1(t)\,\dot{u} + a_0(t)\,u = f(t)$$
 
-hat. Sie heisst **homogen**, wenn $b(t) = 0$, und **inhomogen**, wenn $b(t) \neq 0$.
+hat. Sie heisst **homogen**, wenn $f(t) = 0$, und **inhomogen**, wenn $f(t) \neq 0$.
 
 ### Die vollständige Lösung
 
@@ -146,7 +146,7 @@ $$L\ddot{I} + R\dot{I} + \frac{1}{C}I = -U_0\Omega\sin(\Omega t)$$
 
 oder in normierter Form:
 
-$$\ddot{I} + \frac{R}{L}\dot{I} + \frac{1}{LC}I = b(t)$$
+$$\ddot{I} + \frac{R}{L}\dot{I} + \frac{1}{LC}I = f(t)$$
 
 Dies ist dieselbe mathematische Struktur wie beim Pendel – mit rechter Seite $\neq 0$. Die vollständige Lösung ist:
 
