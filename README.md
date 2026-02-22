@@ -43,7 +43,10 @@ $$u(t) = \underbrace{u_{\text{hom}}(t)}_{\text{klingt ab}} + \underbrace{u_{\tex
 
 ## Projekt 1: Gedämpftes Pendel (`pendel_sim.m`)
 
-![Dämpfungsvergleich](images/pendel_plot.png), ![Animation Pendel](images/pendel_animation.png)
+<p>
+  <img src="images/pendel_plot.png" width="48%">
+  <img src="images/pendel_animation.png" width="48%">
+</p>
 
 ### Physikalisches Modell
 
