@@ -39,18 +39,6 @@ $$u(t) = \underbrace{u_{\text{hom}}(t)}_{\text{klingt ab}} + \underbrace{u_{\tex
 - **Homogene Lösung** $u_{\text{hom}}$: Lösung der GDG mit rechter Seite = 0. Sie beschreibt das transiente Verhalten (Einschwingvorgang) und klingt bei Dämpfung ab.
 - **Partikuläre Lösung** $u_{\text{part}}$: Eine spezielle Lösung der inhomogenen GDG. Sie beschreibt das stationäre (erzwungene) Verhalten.
 
-### Parameter und physikalische Analogie
-
-| Grösse | Pendel | RLC-Schwingkreis |
-|---|---|---|
-| Auslenkung | $\theta(t)$ [rad] | $Q(t)$ [C] |
-| Trägheit | $m$ – Masse [kg] | $L$ – Induktivität [H] |
-| Dämpfung | $b$ – Reibungskoeffizient [kg/s] | $R$ – Widerstand [Ω] |
-| Rückstellgrösse | $g/L$ – Pendellänge/-gravitation | $1/(LC)$ – Kapazität [F] |
-| Dämpfungskonstante | $\delta = b/(2m)$ | $\delta = R/(2L)$ |
-| Eigenfrequenz | $\omega_0 = \sqrt{g/L}$ | $\omega_0 = 1/\sqrt{LC}$ |
-| Antrieb | Antriebskraft $F_0\cos(\Omega t)$ | Spannung $U_0\cos(\Omega t)$ |
-
 ---
 
 ## Projekt 1: Gedämpftes Pendel (`pendel_sim.m`)
@@ -141,6 +129,18 @@ $$\dot{z}_1 = z_2$$
 $$\dot{z}_2 = -\frac{b}{m}z_2 - \frac{g}{L}\sin(z_1)$$
 
 Dies ist das Prinzip der **Zustandsraumdarstellung**, das in der Regelungstechnik und Elektrotechnik zentral ist. Allgemein lässt sich jede GDG $n$-ter Ordnung in $n$ gekoppelte GDGs erster Ordnung umschreiben.
+
+### Parameter und physikalische Analogie
+
+| Grösse | Pendel | RLC-Schwingkreis |
+|---|---|---|
+| Auslenkung | $\theta(t)$ [rad] | $Q(t)$ [C] |
+| Trägheit | $m$ – Masse [kg] | $L$ – Induktivität [H] |
+| Dämpfung | $b$ – Reibungskoeffizient [kg/s] | $R$ – Widerstand [Ω] |
+| Rückstellgrösse | $g/L$ – Pendellänge/-gravitation | $1/(LC)$ – Kapazität [F] |
+| Dämpfungskonstante | $\delta = b/(2m)$ | $\delta = R/(2L)$ |
+| Eigenfrequenz | $\omega_0 = \sqrt{g/L}$ | $\omega_0 = 1/\sqrt{LC}$ |
+| Antrieb | frei, keine Antriebskraft | Spannung $U_0\cos(\Omega t)$ |
 
 ---
 
