@@ -80,7 +80,7 @@ wobei $δ = \frac{b}{2m}$ die Dämpfungskonstante und $\omega_0 = \sqrt{\frac{g}
 
 Das Vorzeichen der Diskriminante $δ^2 - \omega_0^2$ bestimmt das qualitative Verhalten:
 
-#### 1. Unterdämpfung: $\gamma < \omega_0$
+#### 1. Unterdämpfung: $\δ < \omega_0$
 
 Die Wurzeln $\lambda_{1,2}$ sind **komplex**, was zu einer gedämpften Schwingung führt. Die gedämpfte Eigenfrequenz ist:
 
@@ -94,7 +94,7 @@ Das Pendel schwingt mit abnehmender Amplitude aus. $A$ und $B$ werden aus den An
 
 $$A = \theta_0, \qquad B = \frac{\dot{\theta}_0 + δ\theta_0}{\omega_D}$$
 
-#### 2. Kritische Dämpfung: $\gamma = \omega_0$
+#### 2. Kritische Dämpfung: $\δ = \omega_0$
 
 Die Diskriminante ist null, es gibt eine **doppelte reelle Wurzel** $\lambda = -δ$. Die Lösungsformel ändert sich grundlegend:
 
