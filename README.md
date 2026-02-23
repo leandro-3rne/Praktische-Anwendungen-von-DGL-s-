@@ -39,6 +39,18 @@ $$u(t) = \underbrace{u_{\text{hom}}(t)}_{\text{klingt ab}} + \underbrace{u_{\tex
 - **Homogene Lösung** $u_{\text{hom}}$: Lösung der GDG mit rechter Seite = 0. Sie beschreibt das transiente Verhalten (Einschwingvorgang) und klingt bei Dämpfung ab.
 - **Partikuläre Lösung** $u_{\text{part}}$: Eine spezielle Lösung der inhomogenen GDG. Sie beschreibt das stationäre (erzwungene) Verhalten.
 
+### Parameter und physikalische Analogie
+
+| Grösse | Pendel | RLC-Schwingkreis |
+|---|---|---|
+| Auslenkung | $\theta(t)$ [rad] | $Q(t)$ [C] |
+| Trägheit | $m$ – Masse [kg] | $L$ – Induktivität [H] |
+| Dämpfung | $b$ – Reibungskoeffizient [kg/s] | $R$ – Widerstand [Ω] |
+| Rückstellgrösse | $g/L$ – Pendellänge/-gravitation | $1/(LC)$ – Kapazität [F] |
+| Dämpfungskonstante | $\delta = b/(2m)$ | $\delta = R/(2L)$ |
+| Eigenfrequenz | $\omega_0 = \sqrt{g/L}$ | $\omega_0 = 1/\sqrt{LC}$ |
+| Antrieb | Antriebskraft $F_0\cos(\Omega t)$ | Spannung $U_0\cos(\Omega t)$ |
+
 ---
 
 ## Projekt 1: Gedämpftes Pendel (`pendel_sim.m`)
@@ -70,45 +82,41 @@ Rechte Seite = 0 → **homogene** lineare GDG zweiter Ordnung. Dies erlaubt eine
 
 $$\lambda^2 + \frac{b}{m}\lambda + \frac{g}{L} = 0$$
 
-mit:
-
-$$\mu = \sqrt{δ^2 - \omega_0^2}$$
-
-wobei $δ = \frac{b}{2m}$ die Dämpfungskonstante und $\omega_0 = \sqrt{\frac{g}{L}}$ die Eigenfrequenz ist.
+wobei $\delta = \frac{b}{2m}$ die Dämpfungskonstante und $\omega_0 = \sqrt{\frac{g}{L}}$ die Eigenfrequenz ist.
 
 ### Die drei Dämpfungsfälle
 
-Das Vorzeichen der Diskriminante $δ^2 - \omega_0^2$ bestimmt das qualitative Verhalten:
+Das Vorzeichen der Diskriminante $\delta^2 - \omega_0^2$ bestimmt das qualitative Verhalten:
 
-#### 1. Unterdämpfung: $\δ < \omega_0$
+#### 1. Unterdämpfung: $\delta < \omega_0$
 
 Die Wurzeln $\lambda_{1,2}$ sind **komplex**, was zu einer gedämpften Schwingung führt. Die gedämpfte Eigenfrequenz ist:
 
-$$\omega_D = \sqrt{\omega_0^2 - δ^2}$$
+$$\omega_D = \sqrt{\omega_0^2 - \delta^2}$$
 
 Die analytische Lösung lautet:
 
-$$\theta(t) = e^{-δ t}\big(A\cos(\omega_D t) + B\sin(\omega_D t)\big)$$
+$$\theta(t) = e^{-\delta t}\big(A\cos(\omega_D t) + B\sin(\omega_D t)\big)$$
 
 Das Pendel schwingt mit abnehmender Amplitude aus. $A$ und $B$ werden aus den Anfangsbedingungen bestimmt:
 
-$$A = \theta_0, \qquad B = \frac{\dot{\theta}_0 + δ\theta_0}{\omega_D}$$
+$$A = \theta_0, \qquad B = \frac{\dot{\theta}_0 + \delta\theta_0}{\omega_D}$$
 
-#### 2. Kritische Dämpfung: $\δ = \omega_0$
+#### 2. Kritische Dämpfung: $\delta = \omega_0$
 
-Die Diskriminante ist null, es gibt eine **doppelte reelle Wurzel** $\lambda = -δ$. Die Lösungsformel ändert sich grundlegend:
+Die Diskriminante ist null, es gibt eine **doppelte reelle Wurzel** $\lambda = -\delta$. Die Lösungsformel ändert sich grundlegend:
 
-$$\theta(t) = (A + Bt)\,e^{-δ t}$$
+$$\theta(t) = (A + Bt)\,e^{-\delta t}$$
 
 Das Pendel kehrt **so schnell wie möglich** in die Ruhelage zurück, ohne zu schwingen. Dies ist der Übergangsfall zwischen Schwingung und kriechender Rückkehr.
 
 > **Achtung im Code:** Bei $\omega_D = 0$ gibt es eine Division durch null in der Formel für $B$ der Unterdämpfung. Ein `if`-Sonderfall ist notwendig.
 
-#### 3. Überdämpfung: $δ > \omega_0$
+#### 3. Überdämpfung: $\delta > \omega_0$
 
-Die Wurzeln sind **zwei negative reelle Zahlen** $\lambda_1, \lambda_2 < 0$. Die Lösung ist eine Summe zweier Exponentialfunktionen:
+Mit $\mu := \sqrt{\delta^2 - \omega_0^2}$ sind die Wurzeln zwei negative reelle Zahlen. Die Lösung ist eine Summe zweier Exponentialfunktionen:
 
-$$\theta(t) = A e^{(-δ+\mu)t} + B e^{(-δ-\mu)t}$$
+$$\theta(t) = A\, e^{(-\delta+\mu)t} + B\, e^{(-\delta-\mu)t}$$
 
 Das Pendel kriecht langsam in die Ruhelage, kein Schwingen. Langsamer als kritische Dämpfung.
 
@@ -138,31 +146,17 @@ Dies ist das Prinzip der **Zustandsraumdarstellung**, das in der Regelungstechni
 
 ## Projekt 2: RLC-Schwingkreis *(coming soon)*
 
-Dieses Projekt simuliert einen **Reihenschwingkreis** (Widerstand $R$, Induktivität $L$, Kondensator $C$) mit einer angelegten Wechselspannungsquelle $u(t) = U_0\cos(\Omega t)$.
+Dieses Projekt simuliert einen **Reihenschwingkreis** (Widerstand $R$, Induktivität $L$, Kondensator $C$) mit einer angelegten Wechselspannungsquelle $U(t) = U_0\cos(\Omega t)$.
 
-Die zugehörige GDG für die Stromstärke $I(t)$ ist **inhomogen**:
+Die zugehörige GDG für die **Ladung** $Q(t)$ am Kondensator ist **inhomogen** (aus der Maschenregel):
 
-$$L\ddot{I} + R\dot{I} + \frac{1}{C}I = -U_0\Omega\sin(\Omega t)$$
+$$\ddot{Q} + \frac{R}{L}\dot{Q} + \frac{1}{LC}Q = \frac{U_0}{L}\cos(\Omega t)$$
 
-oder in normierter Form:
+Die Stromstärke ergibt sich dann als $I = \dot{Q}$. Dies ist dieselbe mathematische Struktur wie beim Pendel – mit rechter Seite $\neq 0$. Die vollständige Lösung ist:
 
-$$\ddot{I} + \frac{R}{L}\dot{I} + \frac{1}{LC}I = f(t)$$
-
-Dies ist dieselbe mathematische Struktur wie beim Pendel – mit rechter Seite $\neq 0$. Die vollständige Lösung ist:
-
-$$I(t) = I_{\text{hom}}(t) + I_{\text{part}}(t)$$
+$$Q(t) = Q_{\text{hom}}(t) + Q_{\text{part}}(t)$$
 
 Das Projekt zeigt insbesondere das Phänomen der **Resonanz** bei $\Omega = \omega_0 = \frac{1}{\sqrt{LC}}$, wo die Amplitude der partikulären Lösung maximal wird.
-
-### Parameter und ihre physikalische Bedeutung
-
-| Parameter | Bedeutung | Analogie RLC |
-|---|---|---|
-| `m` – Masse [kg] | Trägheit des Systems | Induktivität $L$ [H] |
-| `b` – Dämpfung [kg/s] | Reibung im Medium (Luft < Wasser < Öl) | Widerstand $R$ [Ω] |
-| `L` – Länge [m] | Bestimmt $\omega_0$ | Kapazität $C$ [F] |
-| `δ` – Dämpfungskonstante | Wie schnell Einhüllende $e^{-δ t}$ abfällt | $\frac{R}{2L}$ |
-| `omega0` – Eigenfrequenz | Schwingfrequenz ohne Dämpfung | $\frac{1}{\sqrt{LC}}$ |
 
 ---
 
@@ -183,4 +177,4 @@ run('pendel_sim.m')
 
 ## Voraussetzungen
 
-- MATLAB (getestet mit R2025a)
+- MATLAB (getestet mit R2025b)
