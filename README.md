@@ -98,8 +98,6 @@ $$\theta(t) = (A + Bt)\,e^{-\delta t}$$
 
 Das Pendel kehrt **so schnell wie möglich** in die Ruhelage zurück, ohne zu schwingen. Dies ist der Übergangsfall zwischen Schwingung und kriechender Rückkehr.
 
-> **Achtung im Code:** Bei $\omega_D = 0$ gibt es eine Division durch null in der Formel für $B$ der Unterdämpfung. Ein `if`-Sonderfall ist notwendig.
-
 #### 3. Überdämpfung: $\delta > \omega_0$
 
 Mit $\mu := \sqrt{\delta^2 - \omega_0^2}$ sind die Wurzeln zwei negative reelle Zahlen. Die Lösung ist eine Summe zweier Exponentialfunktionen:
