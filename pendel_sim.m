@@ -6,7 +6,7 @@ clc;
 m = 1.0;    % Masse in kg
 L = 1.0;    % Länge in m
 g = 9.81;   % Erdbeschleunigung
-b = 0.5;    % Dämpfungskoeffizient [b_kritisch = 2 * m * sqrt(g/L)]
+b = 0.5;    % Dämpfungskoeffizient [b_kritisch = 2*m*sqrt(g/L)]
 
 % Abgeleitete Grössen
 omega0 = sqrt(g/L);                 % Eigenfrequenz (ungedämpft)
@@ -21,14 +21,24 @@ dtheta0 = 0;    % Startgeschwindigkeit
 t = linspace(0, 20, 2000);
 
 
-% -- Analytische Lösung (homogen, Kleinwinkel) --
+% Analytische homogene Lösung (drei Fälle)
+if delta < omega0                          % (a) Unterdämpfung
+    omegaD = sqrt(omega0^2 - delta^2);
+    A = theta0;
+    B = (dtheta0 + delta*theta0) / omegaD;
+    theta_hom = exp(-delta*t) .* (A*cos(omegaD*t) + B*sin(omegaD*t));
 
-% Koeffizienten aus Anfangsbedingungen
-A = theta0;
-B = (dtheta0 + delta*theta0) / omegaD;
+elseif abs(delta - omega0) < 1e-6          % (b) Kritische Dämpfung
+    c1 = theta0;
+    c2 = dtheta0 + delta*theta0;
+    theta_hom = (c1 + c2*t) .* exp(-delta*t);
 
-% Analytische homogene Lösung
-theta_hom = exp(-delta*t) .* (A*cos(omegaD*t) + B*sin(omegaD*t));
+else                                       % (c) Überdämpfung
+    mu = sqrt(delta^2 - omega0^2);
+    c1 = (theta0*(delta + mu) + dtheta0) / (2*mu);
+    c2 = (theta0*(mu - delta) - dtheta0) / (2*mu);
+    theta_hom = c1*exp((-delta+mu)*t) + c2*exp((-delta-mu)*t);
+end
 
 
 % -- Numerische Lösung mit ode45 --
