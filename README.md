@@ -12,7 +12,7 @@ Dieses Repository enthält MATLAB-Simulationen zu **linearen gewöhnlichen Diffe
 | Projekt | Typ | DGL |
 |---|---|---|
 | `pendel_sim.m` | Homogen (freie Schwingung) | Gedämpftes Pendel |
-| `schwingkreis_sim.m` | Inhomogen (erzwungene Schwingung) | RLC-Schwingkreis *(coming soon)* |
+| `schwingkreis_sim.m` | Inhomogen (erzwungene Schwingung) | RLC-Schwingkreis |
 
 ---
 
@@ -142,19 +142,96 @@ Dies ist das Prinzip der **Zustandsraumdarstellung**, das in der Regelungstechni
 
 ---
 
-## Projekt 2: RLC-Schwingkreis *(coming soon)*
+## Projekt 2: RLC-Schwingkreis (`schwingkreis_sim.m`)
 
-Dieses Projekt simuliert einen **Reihenschwingkreis** (Widerstand $R$, Induktivität $L$, Kondensator $C$) mit einer angelegten Wechselspannungsquelle $U(t) = U_0\cos(\Omega t)$.
+<p>
+  <img src="images/rlc_plot.png" width="48%">
+  <img src="images/rlc_animation.png" width="48%">
+</p>
 
-Die zugehörige GDG für die **Ladung** $Q(t)$ am Kondensator ist **inhomogen** (aus der Maschenregel):
+### Physikalisches Modell
 
-$$\ddot{Q} + \frac{R}{L}\dot{Q} + \frac{1}{LC}Q = \frac{U_0}{L}\cos(\Omega t)$$
+Ein **Reihenschwingkreis** besteht aus Widerstand $R$, Induktivität $L$ und Kondensator $C$, optional mit einer angelegten Wechselspannungsquelle $U(t) = U_0\cos(\Omega t)$. Aus der **Maschenregel** (Kirchhoff) folgt:
 
-Die Stromstärke ergibt sich dann als $I = \dot{Q}$. Dies ist dieselbe mathematische Struktur wie beim Pendel – mit rechter Seite $\neq 0$. Die vollständige Lösung ist:
+$$U_R + U_L + U_C = U(t)$$
+$$R\dot{Q} + L\ddot{Q} + \frac{Q}{C} = U_0\cos(\Omega t)$$
+
+Dividiert durch $L$ ergibt sich die GDG für die Ladung $Q(t)$ am Kondensator:
+
+$$\ddot{Q} + \frac{R}{L}\dot{Q} + \frac{1}{LC}\,Q = \frac{U_0}{L}\cos(\Omega t)$$
+
+Die Stromstärke ist dann $I = \dot{Q}$. Mit $\delta = R/(2L)$ und $\omega_0 = 1/\sqrt{LC}$ hat die GDG dieselbe Struktur wie beim gedämpften Pendel — aber mit einer **nichtverschwindenden rechten Seite** (inhomogen, falls $U_0 \neq 0$).
+
+### Homogene Lösung $Q_{\text{hom}}$
+
+Die homogene GDG ($U_0 = 0$, freie Schwingung) hat dasselbe charakteristische Polynom wie das Pendel. Die drei Dämpfungsfälle sind identisch strukturiert, mit $\delta = R/(2L)$, $\omega_0 = 1/\sqrt{LC}$ und $\mu = \sqrt{\delta^2 - \omega_0^2}$:
+
+| Fall | Bedingung | Lösung $Q_{\text{hom}}(t)$ |
+|---|---|---|
+| Unterdämpfung | $\delta < \omega_0$ | $e^{-\delta t}(A\cos(\omega_D t) + B\sin(\omega_D t))$, $\quad\omega_D = \sqrt{\omega_0^2 - \delta^2}$ |
+| Kritische Dämpfung | $\delta = \omega_0$ | $(A + Bt)\,e^{-\delta t}$ |
+| Überdämpfung | $\delta > \omega_0$ | $A\,e^{(-\delta+\mu)t} + B\,e^{(-\delta-\mu)t}$ |
+
+Die Konstanten $A$, $B$ folgen aus den **angepassten** Anfangsbedingungen (siehe unten).
+
+### Partikuläre Lösung $Q_{\text{part}}$ (Bemerkung 7.12, Beispiel 7.13, Ziltener)
+
+Für die inhomogene GDG mit $U_0 \neq 0$ wird ein **Ansatz über komplexe Exponentialfunktionen** gemacht. Die GDG hat die Form von (7.31) im Skript mit:
+
+$$a_0 := \frac{1}{LC}, \qquad a_1 := \frac{R}{L}, \qquad c := \frac{U_0}{L}$$
+
+Man schreibt den Nenner-Ausdruck in **Polarform**:
+
+$$r\,e^{i\zeta} := (a_0 - \Omega^2) + i\,a_1\Omega$$
+
+$$r = \sqrt{(a_0 - \Omega^2)^2 + (a_1\Omega)^2}, \qquad \zeta = \arg\!\big(a_0 - \Omega^2 + i\,a_1\Omega\big)$$
+
+Die partikuläre Lösung ist dann (Formel 7.34):
+
+$$Q_{\text{part}}(t) = \frac{c}{r}\cos(\Omega t - \zeta)$$
+
+Davon lässt sich der zugehörige partikuläre Strom ableiten:
+
+$$I_{\text{part}}(t) = \dot{Q}_{\text{part}}(t) = \frac{U_0}{Z}\cos(\Omega t - \varphi)$$
+
+wobei $Z$ der **Scheinwiderstand** (Impedanz) und $\varphi$ die Phasenverschiebung zwischen Spannung und Strom sind:
+
+$$Z = \sqrt{R^2 + \left(\frac{1}{C\Omega} - L\Omega\right)^2}, \qquad \varphi = \zeta - \frac{\pi}{2}$$
+
+Im eingeschwungenen Zustand ($t \to \infty$, $R > 0$) klingt $Q_{\text{hom}}$ exponentiell ab und $I(t) \approx I_{\text{part}}(t)$ — der Schwingkreis schwingt mit der **Anregungsfrequenz** $\Omega$, nicht mehr mit $\omega_0$.
+
+#### Sonderfall: Resonanzkatastrophe ($\Omega = \omega_0$, $R = 0$)
+
+Wenn Anregungs- und Eigenfrequenz übereinstimmen **und** keine Dämpfung vorhanden ist, versagt der obige Ansatz (Nenner wird null). Die partikuläre Lösung wächst dann **linear mit der Zeit** an (Formel 7.39, Skript):
+
+$$Q_{\text{part}}(t) = \frac{U_0}{2L\omega_0}\,t\,\sin(\omega_0 t)$$
+
+Die Amplitude wächst unbeschränkt — die sogenannte **Resonanzkatastrophe**.
+
+### Allgemeine Lösung und Anfangsbedingungen
+
+Die vollständige Lösung ist:
 
 $$Q(t) = Q_{\text{hom}}(t) + Q_{\text{part}}(t)$$
 
-Das Projekt zeigt insbesondere das Phänomen der **Resonanz** bei $\Omega = \omega_0 = \frac{1}{\sqrt{LC}}$, wo die Amplitude der partikulären Lösung maximal wird.
+Da $Q_{\text{part}}$ im Allgemeinen $Q_{\text{part}}(0) \neq 0$ und $\dot{Q}_{\text{part}}(0) \neq 0$ hat, müssen die Konstanten $A$, $B$ des homogenen Anteils so gewählt werden, dass die **Gesamtlösung** die Anfangsbedingungen erfüllt:
+
+$$Q_{\text{hom}}(0) = Q_0 - Q_{\text{part}}(0), \qquad \dot{Q}_{\text{hom}}(0) = \dot{Q}_0 - \dot{Q}_{\text{part}}(0)$$
+
+### Resonanz und Filterverhalten
+
+Die Amplitude von $I_{\text{part}}$ ist $U_0/Z$. Da $Z$ bei $\Omega = \omega_0$ minimal wird (der reaktive Term $1/(C\Omega) - L\Omega$ verschwindet), ist die Stromamplitude dort **maximal**. Für $\Omega \to 0$ und $\Omega \to \infty$ geht $Z \to \infty$ und die Amplitude gegen null. Der Schwingkreis wirkt dadurch als **Bandpassfilter**, der nur Frequenzen nahe $\omega_0$ durchlässt.
+
+### Analytisch vs. Numerisch
+
+Im Gegensatz zum Pendel gibt es beim RLC-Schwingkreis **keine Näherung** — die GDG ist exakt linear. Die analytische und numerische Lösung sollten daher bis auf Rundungsfehler übereinstimmen, was die Simulation direkt verifiziert.
+
+### Zustandsraumdarstellung für ode45
+
+Analog zum Pendel wird die GDG zweiter Ordnung in ein System erster Ordnung umgeschrieben, mit $z_1 = Q$, $z_2 = \dot{Q} = I$:
+
+$$\dot{z}_1 = z_2$$
+$$\dot{z}_2 = -\frac{R}{L}\,z_2 - \frac{1}{LC}\,z_1 + \frac{U_0}{L}\cos(\Omega t)$$
 
 ---
 
