@@ -44,8 +44,8 @@ $$u(t) = \underbrace{u_{\text{hom}}(t)}_{\text{klingt ab}} + \underbrace{u_{\tex
 ## Projekt 1: Gedämpftes Pendel (`pendel_sim.m`)
 
 <p>
-  <img src="images/pendel_plot.png" width="48%">
-  <img src="images/pendel_animation.png" width="48%">
+  <img src="images/pendel_plot.png" width="50%">
+  <img src="images/pendel_animation.png" width="50%">
 </p>
 
 ### Physikalisches Modell
@@ -145,8 +145,8 @@ Dies ist das Prinzip der **Zustandsraumdarstellung**, das in der Regelungstechni
 ## Projekt 2: RLC-Schwingkreis (`schwingkreis_sim.m`)
 
 <p>
-  <img src="images/schwingkreis_animation.png" width="96%">
-  <img src="images/schwingkreis_plots.png" width="96%">
+  <img src="images/schwingkreis_animation.png" width="100%">
+  <img src="images/schwingkreis_plots.png" width="100%">
 </p>
 
 ### Physikalisches Modell
