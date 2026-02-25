@@ -174,21 +174,21 @@ Die homogene GDG ($U_0 = 0$, freie Schwingung) hat dasselbe charakteristische Po
 
 Die Konstanten $A$, $B$ folgen aus den **angepassten** Anfangsbedingungen (siehe unten).
 
-### Partikuläre Lösung $Q_{\text{part}}$ (Bemerkung 7.12, Beispiel 7.13, Ziltener)
+### Partikuläre Lösung $Q_{\text{part}}$
 
-Für die inhomogene GDG mit $U_0 \neq 0$ wird ein **Ansatz über komplexe Exponentialfunktionen** gemacht. Die GDG hat die Form von (7.31) im Skript mit:
+Für die inhomogene GDG mit $U_0 \neq 0$ wird ein **Ansatz über komplexe Exponentialfunktionen** gemacht. Mit den Abkürzungen
 
 $$a_0 := \frac{1}{LC}, \qquad a_1 := \frac{R}{L}, \qquad c := \frac{U_0}{L}$$
 
-Man schreibt den Nenner-Ausdruck in **Polarform**:
+schreibt man den Nenner-Ausdruck in **Polarform**:
 
-$$r\,e^{i\zeta} := (a_0 - \Omega^2) + i\,a_1\Omega$$
+$$r\,e^{i\psi} := a_0 - \Omega^2 + i\,a_1\Omega$$
 
-$$r = \sqrt{(a_0 - \Omega^2)^2 + (a_1\Omega)^2}, \qquad \zeta = \arg\!\big(a_0 - \Omega^2 + i\,a_1\Omega\big)$$
+$$r = \sqrt{(a_0 - \Omega^2)^2 + (a_1\Omega)^2}, \qquad \psi = \arg(a_0 - \Omega^2 + i\,a_1\Omega)$$
 
-Die partikuläre Lösung ist dann (Formel 7.34):
+Die partikuläre Lösung ist dann:
 
-$$Q_{\text{part}}(t) = \frac{c}{r}\cos(\Omega t - \zeta)$$
+$$Q_{\text{part}}(t) = \frac{c}{r}\cos(\Omega t - \psi)$$
 
 Davon lässt sich der zugehörige partikuläre Strom ableiten:
 
@@ -196,13 +196,13 @@ $$I_{\text{part}}(t) = \dot{Q}_{\text{part}}(t) = \frac{U_0}{Z}\cos(\Omega t - \
 
 wobei $Z$ der **Scheinwiderstand** (Impedanz) und $\varphi$ die Phasenverschiebung zwischen Spannung und Strom sind:
 
-$$Z = \sqrt{R^2 + \left(\frac{1}{C\Omega} - L\Omega\right)^2}, \qquad \varphi = \zeta - \frac{\pi}{2}$$
+$$Z = \sqrt{R^2 + \left(\frac{1}{C\Omega} - L\Omega\right)^2}, \qquad \varphi = \psi - \frac{\pi}{2}$$
 
 Im eingeschwungenen Zustand ($t \to \infty$, $R > 0$) klingt $Q_{\text{hom}}$ exponentiell ab und $I(t) \approx I_{\text{part}}(t)$ — der Schwingkreis schwingt mit der **Anregungsfrequenz** $\Omega$, nicht mehr mit $\omega_0$.
 
 #### Sonderfall: Resonanzkatastrophe ($\Omega = \omega_0$, $R = 0$)
 
-Wenn Anregungs- und Eigenfrequenz übereinstimmen **und** keine Dämpfung vorhanden ist, versagt der obige Ansatz (Nenner wird null). Die partikuläre Lösung wächst dann **linear mit der Zeit** an (Formel 7.39, Skript):
+Wenn Anregungs- und Eigenfrequenz übereinstimmen **und** keine Dämpfung vorhanden ist, versagt der obige Ansatz (Nenner wird null). Die partikuläre Lösung wächst dann **linear mit der Zeit** an:
 
 $$Q_{\text{part}}(t) = \frac{U_0}{2L\omega_0}\,t\,\sin(\omega_0 t)$$
 
@@ -216,11 +216,7 @@ $$Q(t) = Q_{\text{hom}}(t) + Q_{\text{part}}(t)$$
 
 Da $Q_{\text{part}}$ im Allgemeinen $Q_{\text{part}}(0) \neq 0$ und $\dot{Q}_{\text{part}}(0) \neq 0$ hat, müssen die Konstanten $A$, $B$ des homogenen Anteils so gewählt werden, dass die **Gesamtlösung** die Anfangsbedingungen erfüllt:
 
-$$Q_{\text{hom}}(0) = Q_0 - Q_{\text{part}}(0), \qquad \dot{Q}_{\text{hom}}(0) = \dot{Q}_0 - \dot{Q}_{\text{part}}(0)$$
-
-### Resonanz und Filterverhalten
-
-Die Amplitude von $I_{\text{part}}$ ist $U_0/Z$. Da $Z$ bei $\Omega = \omega_0$ minimal wird (der reaktive Term $1/(C\Omega) - L\Omega$ verschwindet), ist die Stromamplitude dort **maximal**. Für $\Omega \to 0$ und $\Omega \to \infty$ geht $Z \to \infty$ und die Amplitude gegen null. Der Schwingkreis wirkt dadurch als **Bandpassfilter**, der nur Frequenzen nahe $\omega_0$ durchlässt.
+$$Q_{\text{hom}}(0) + Q_{\text{part}}(0) = Q_0, \qquad \dot{Q}_{\text{hom}}(0) + \dot{Q}_{\text{part}}(0) = \dot{Q}_0$$
 
 ### Analytisch vs. Numerisch
 
