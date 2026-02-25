@@ -41,23 +41,6 @@ else                                        % (c) Überdämpfung
 end
 
 % -- Analytische partikuläre Lösung (inhomogener Fall, U0 ~= 0) --
-% Gemäss Skript (Ziltener Analysis 1/2, Bemerkung 7.12 / Beispiel 7.13):
-% GDG: Q'' + (R/L)*Q' + (1/(L*C))*Q = (U0/L)*cos(Omega*t)
-% Mit a0 = 1/(L*C), a1 = R/L, c_inh = U0/L
-%
-% Polarform: r*exp(i*zeta) := a0 - Omega^2 + i*a1*Omega
-%   => r = sqrt((a0 - Omega^2)^2 + (a1*Omega)^2)   [Scheinwiderstand-bezogen]
-%   => zeta = angle(a0 - Omega^2 + i*a1*Omega)
-%
-% Partikuläre Lösung: Qp(t) = (c_inh / r) * cos(Omega*t - zeta)
-%
-% Sonderfall Resonanzkatastrophe (a0 = Omega^2, R = 0):
-%   Qp(t) = U0/(2*L*omega0) * t * sin(omega0*t)
-%
-% Für die allgemeine Lösung müssen die Anfangsbedingungen des homogenen Anteils
-% so angepasst werden, dass Q(0) = Q0 und Q'(0) = dQ0 gilt:
-%   Q_gesamt(0) = Q_hom_angepasst(0) + Qp(0) = Q0
-%   Q_gesamt'(0) = Q_hom'_angepasst(0) + Qp'(0) = dQ0
 
 Q_anal = Q_hom;  % Standardfall: homogene Lösung (U0=0)
 
@@ -130,6 +113,8 @@ else
     legend('Analytisch (homogen)', 'Numerisch (ode45, exakt)');
 end
 grid on;
+
+% ---- Animationen & Plots ----
 
 % Energie vorberechnen
 % E_C = Q^2 / (2C)  -->  im Kondensator gespeicherte elektrische Energie
@@ -257,7 +242,7 @@ for i = 1:5:length(t_num)
         'HorizontalAlignment', 'center', 'FontSize', 10, ...
         'FontWeight', 'bold', 'Color', [0.0 0.55 0.15]);
 
-    % --- Spannungsquelle (rechts, gegenüber vom Kondensator), nur wenn U0 ~= 0 ---
+    % Spannungsquelle (rechts, gegenüber vom Kondensator), nur wenn U0 ~= 0
     if U0 ~= 0
         U_now = U0 * cos(Omega * t_num(i));   % momentane Spannung
 

@@ -86,9 +86,7 @@ end
 
 
 % Hilfsfunktion ode45
-
 % Umwandlugn DGL 2.Ordnung in zwei DGLs 1.Ordnung
-
 function dz = pendel_ode(t, z, b, m, L, g)
     theta = z(1);
     dtheta = z(2);
