@@ -21,7 +21,8 @@ dtheta0 = 0;    % Startgeschwindigkeit
 t = linspace(0, 20, 2000);
 
 
-% Analytische homogene Lösung (drei Fälle)
+% -- Analytische homogene Lösung (drei Fälle) --
+
 if delta < omega0                          % (a) Unterdämpfung
     omegaD = sqrt(omega0^2 - delta^2);
     A = theta0;
@@ -48,10 +49,9 @@ z0 = [theta0; dtheta0];
 theta_num = z_num(:,1);
 
 
-% -- Plotten der DGL-Lösungen --
-
+% Plotten der DGL-Lösungen
 figure(1);
-set(gcf, 'Position', [100, 100, 700, 500]);
+set(gcf, 'Position', [60, 100, 700, 500]);
 plot(t, theta_hom, 'b', 'LineWidth', 2); hold on; % blau
 plot(t_num, theta_num, 'r--', 'LineWidth', 1.5);    % rot
 xlabel('Zeit t [s]');
@@ -61,10 +61,9 @@ legend('Analytisch (homogen, Kleinwinkel)', 'Numerisch (ode45, exakt)');
 grid on;
 
 
-% -- Animation --
-
+% Animation
 figure(2);
-set(gcf, 'Position', [820, 100, 700, 500]);
+set(gcf, 'Position', [780, 100, 700, 500]);
 for i = 1:5:length(t_num)
     figure(2);
     clf;
@@ -86,7 +85,7 @@ for i = 1:5:length(t_num)
 end
 
 
-% -- Hilfsfunktion ode45 --
+% Hilfsfunktion ode45
 
 % Umwandlugn DGL 2.Ordnung in zwei DGLs 1.Ordnung
 
