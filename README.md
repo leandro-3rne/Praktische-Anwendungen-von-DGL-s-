@@ -158,7 +158,7 @@ $$R\dot{Q} + L\ddot{Q} + \frac{Q}{C} = U_0\cos(\Omega t)$$
 
 Dividiert durch $L$ ergibt sich die GDG für die Ladung $Q(t)$ am Kondensator:
 
-$$\ddot{Q} + \frac{R}{L}\dot{Q} + \frac{1}{LC}\,Q = \frac{U_0}{L}\cos(\Omega t)$$
+$$\ddot{Q} + \frac{R}{L}\dot{Q} + \frac{1}{LC}\Q = \frac{U_0}{L}\cos(\Omega t)$$
 
 Die Stromstärke ist dann $I = \dot{Q}$. Mit $\delta = R/(2L)$ und $\omega_0 = 1/\sqrt{LC}$ hat die GDG dieselbe Struktur wie beim gedämpften Pendel — aber mit einer **nichtverschwindenden rechten Seite** (inhomogen, falls $U_0 \neq 0$).
 
@@ -169,8 +169,8 @@ Die homogene GDG ($U_0 = 0$, freie Schwingung) hat dasselbe charakteristische Po
 | Fall | Bedingung | Lösung $Q_{\text{hom}}(t)$ |
 |---|---|---|
 | Unterdämpfung | $\delta < \omega_0$ | $e^{-\delta t}(A\cos(\omega_D t) + B\sin(\omega_D t))$, $\quad\omega_D = \sqrt{\omega_0^2 - \delta^2}$ |
-| Kritische Dämpfung | $\delta = \omega_0$ | $(A + Bt)\,e^{-\delta t}$ |
-| Überdämpfung | $\delta > \omega_0$ | $A\,e^{(-\delta+\mu)t} + B\,e^{(-\delta-\mu)t}$ |
+| Kritische Dämpfung | $\delta = \omega_0$ | $(A + Bt)\e^{-\delta t}$ |
+| Überdämpfung | $\delta > \omega_0$ | $A\e^{(-\delta+\mu)t} + B\e^{(-\delta-\mu)t}$ |
 
 Die Konstanten $A$, $B$ folgen aus den **angepassten** Anfangsbedingungen (siehe unten).
 
@@ -178,13 +178,13 @@ Die Konstanten $A$, $B$ folgen aus den **angepassten** Anfangsbedingungen (siehe
 
 Für die inhomogene GDG mit $U_0 \neq 0$ wird ein **Ansatz über komplexe Exponentialfunktionen** gemacht. Mit den Abkürzungen
 
-$$a_0 := \frac{1}{LC}, \qquad a_1 := \frac{R}{L}, \qquad c := \frac{U_0}{L}$$
+$$a_0 := \frac{1}{LC} \qquad a_1 := \frac{R}{L} \qquad c := \frac{U_0}{L}$$
 
 schreibt man den Nenner-Ausdruck in **Polarform**:
 
-$$r\,e^{i\psi} := a_0 - \Omega^2 + i\,a_1\Omega$$
+$$r\e^{i\psi} := a_0 - \Omega^2 + i\a_1\Omega$$
 
-$$r = \sqrt{(a_0 - \Omega^2)^2 + (a_1\Omega)^2}, \qquad \psi = \arg(a_0 - \Omega^2 + i\,a_1\Omega)$$
+$$r = \sqrt{(a_0 - \Omega^2)^2 + (a_1\Omega)^2} \qquad \psi = \arg(a_0 - \Omega^2 + i\a_1\Omega)$$
 
 Die partikuläre Lösung ist dann:
 
@@ -196,15 +196,15 @@ $$I_{\text{part}}(t) = \dot{Q}_{\text{part}}(t) = \frac{U_0}{Z}\cos(\Omega t - \
 
 wobei $Z$ der **Scheinwiderstand** (Impedanz) und $\varphi$ die Phasenverschiebung zwischen Spannung und Strom sind:
 
-$$Z = \sqrt{R^2 + \left(\frac{1}{C\Omega} - L\Omega\right)^2}, \qquad \varphi = \psi - \frac{\pi}{2}$$
+$$Z = \sqrt{R^2 + \left(\frac{1}{C\Omega} - L\Omega\right)^2} \qquad \varphi = \psi - \frac{\pi}{2}$$
 
 Im eingeschwungenen Zustand ($t \to \infty$, $R > 0$) klingt $Q_{\text{hom}}$ exponentiell ab und $I(t) \approx I_{\text{part}}(t)$ — der Schwingkreis schwingt mit der **Anregungsfrequenz** $\Omega$, nicht mehr mit $\omega_0$.
 
-#### Sonderfall: Resonanzkatastrophe ($\Omega = \omega_0$, $R = 0$)
+#### Sonderfall: Resonanzkatastrophe ($\Omega = \omega_0$ $R = 0$)
 
 Wenn Anregungs- und Eigenfrequenz übereinstimmen **und** keine Dämpfung vorhanden ist, versagt der obige Ansatz (Nenner wird null). Die partikuläre Lösung wächst dann **linear mit der Zeit** an:
 
-$$Q_{\text{part}}(t) = \frac{U_0}{2L\omega_0}\,t\,\sin(\omega_0 t)$$
+$$Q_{\text{part}}(t) = \frac{U_0}{2L\omega_0}\t\\sin(\omega_0 t)$$
 
 Die Amplitude wächst unbeschränkt — die sogenannte **Resonanzkatastrophe**.
 
@@ -216,7 +216,7 @@ $$Q(t) = Q_{\text{hom}}(t) + Q_{\text{part}}(t)$$
 
 Da $Q_{\text{part}}$ im Allgemeinen $Q_{\text{part}}(0) \neq 0$ und $\dot{Q}_{\text{part}}(0) \neq 0$ hat, müssen die Konstanten $A$, $B$ des homogenen Anteils so gewählt werden, dass die **Gesamtlösung** die Anfangsbedingungen erfüllt:
 
-$$Q_{\text{hom}}(0) + Q_{\text{part}}(0) = Q_0, \qquad \dot{Q}_{\text{hom}}(0) + \dot{Q}_{\text{part}}(0) = \dot{Q}_0$$
+$$Q_{\text{hom}}(0) + Q_{\text{part}}(0) = Q_0 \qquad \dot{Q}_{\text{hom}}(0) + \dot{Q}_{\text{part}}(0) = \dot{Q}_0$$
 
 ### Analytisch vs. Numerisch
 
@@ -227,7 +227,7 @@ Im Gegensatz zum Pendel gibt es beim RLC-Schwingkreis **keine Näherung** — di
 Analog zum Pendel wird die GDG zweiter Ordnung in ein System erster Ordnung umgeschrieben, mit $z_1 = Q$, $z_2 = \dot{Q} = I$:
 
 $$\dot{z}_1 = z_2$$
-$$\dot{z}_2 = -\frac{R}{L}\,z_2 - \frac{1}{LC}\,z_1 + \frac{U_0}{L}\cos(\Omega t)$$
+$$\dot{z}_2 = -\frac{R}{L}\z_2 - \frac{1}{LC}\z_1 + \frac{U_0}{L}\cos(\Omega t)$$
 
 ---
 
