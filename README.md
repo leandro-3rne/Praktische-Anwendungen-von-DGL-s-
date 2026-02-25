@@ -227,7 +227,7 @@ Im Gegensatz zum Pendel gibt es beim RLC-Schwingkreis **keine Näherung** — di
 Analog zum Pendel wird die GDG zweiter Ordnung in ein System erster Ordnung umgeschrieben, mit $z_1 = Q$, $z_2 = \dot{Q} = I$:
 
 $$\dot{z}_1 = z_2$$
-$$\dot{z}_2 = -\frac{R}{L}\z_2 - \frac{1}{LC}\z_1 + \frac{U_0}{L}\cos(\Omega t)$$
+$$\dot{z}_2 = -\frac{R}{L}z_2 - \frac{1}{LC}z_1 + \frac{U_0}{L}\cos(\Omega t)$$
 
 ---
 
