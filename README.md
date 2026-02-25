@@ -158,7 +158,7 @@ $$R\dot{Q} + L\ddot{Q} + \frac{Q}{C} = U_0\cos(\Omega t)$$
 
 Dividiert durch $L$ ergibt sich die GDG für die Ladung $Q(t)$ am Kondensator:
 
-$$\ddot{Q} + \frac{R}{L}\dot{Q} + \frac{1}{LC}\Q = \frac{U_0}{L}\cos(\Omega t)$$
+$$\ddot{Q} + \frac{R}{L}\dot{Q} + \frac{1}{LC}Q = \frac{U_0}{L}\cos(\Omega t)$$
 
 Die Stromstärke ist dann $I = \dot{Q}$. Mit $\delta = R/(2L)$ und $\omega_0 = 1/\sqrt{LC}$ hat die GDG dieselbe Struktur wie beim gedämpften Pendel — aber mit einer **nichtverschwindenden rechten Seite** (inhomogen, falls $U_0 \neq 0$).
 
@@ -169,8 +169,8 @@ Die homogene GDG ($U_0 = 0$, freie Schwingung) hat dasselbe charakteristische Po
 | Fall | Bedingung | Lösung $Q_{\text{hom}}(t)$ |
 |---|---|---|
 | Unterdämpfung | $\delta < \omega_0$ | $e^{-\delta t}(A\cos(\omega_D t) + B\sin(\omega_D t))$, $\quad\omega_D = \sqrt{\omega_0^2 - \delta^2}$ |
-| Kritische Dämpfung | $\delta = \omega_0$ | $(A + Bt)\e^{-\delta t}$ |
-| Überdämpfung | $\delta > \omega_0$ | $A\e^{(-\delta+\mu)t} + B\e^{(-\delta-\mu)t}$ |
+| Kritische Dämpfung | $\delta = \omega_0$ | $(A + Bt)e^{-\delta t}$ |
+| Überdämpfung | $\delta > \omega_0$ | $Ae^{(-\delta+\mu)t} + Be^{(-\delta-\mu)t}$ |
 
 Die Konstanten $A$, $B$ folgen aus den **angepassten** Anfangsbedingungen (siehe unten).
 
@@ -182,9 +182,9 @@ $$a_0 := \frac{1}{LC} \qquad a_1 := \frac{R}{L} \qquad c := \frac{U_0}{L}$$
 
 schreibt man den Nenner-Ausdruck in **Polarform**:
 
-$$r\e^{i\psi} := a_0 - \Omega^2 + i\a_1\Omega$$
+$$re^{i\psi} := a_0 - \Omega^2 + ia_1\Omega$$
 
-$$r = \sqrt{(a_0 - \Omega^2)^2 + (a_1\Omega)^2} \qquad \psi = \arg(a_0 - \Omega^2 + i\a_1\Omega)$$
+$$r = \sqrt{(a_0 - \Omega^2)^2 + (a_1\Omega)^2} \qquad \psi = \arg(a_0 - \Omega^2 + ia_1\Omega)$$
 
 Die partikuläre Lösung ist dann:
 
@@ -204,7 +204,7 @@ Im eingeschwungenen Zustand ($t \to \infty$, $R > 0$) klingt $Q_{\text{hom}}$ ex
 
 Wenn Anregungs- und Eigenfrequenz übereinstimmen **und** keine Dämpfung vorhanden ist, versagt der obige Ansatz (Nenner wird null). Die partikuläre Lösung wächst dann **linear mit der Zeit** an:
 
-$$Q_{\text{part}}(t) = \frac{U_0}{2L\omega_0}\t\\sin(\omega_0 t)$$
+$$Q_{\text{part}}(t) = \frac{U_0}{2L\omega_0}t\\sin(\omega_0 t)$$
 
 Die Amplitude wächst unbeschränkt — die sogenannte **Resonanzkatastrophe**.
 
