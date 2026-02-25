@@ -22,13 +22,13 @@ Dieses Repository enthält MATLAB-Simulationen zu **linearen gewöhnlichen Diffe
 
 Eine **gewöhnliche Differentialgleichung (GDG)** der Ordnung $n$ für eine Funktion $u: I \to \mathbb{R}$ ist eine Gleichung der Form:
 
-$$\varphi\big(t,\, u(t),\, \dot{u}(t),\, \ldots,\, u^{(n)}(t)\big) = 0, \quad t \in I$$
+$$\varphi\big(t\, u(t)\, \dot{u}(t)\, \ldots\, u^{(n)}(t)\big) = 0 \quad t \in I$$
 
 Eine GDG heisst **linear**, wenn sie die Form
 
 $$u^{(n)} + a_{n-1}(t)\,u^{(n-1)} + \cdots + a_1(t)\,\dot{u} + a_0(t)\,u = f(t)$$
 
-hat. Sie heisst **homogen**, wenn $f(t) = 0$, und **inhomogen**, wenn $f(t) \neq 0$.
+hat. Sie heisst **homogen**, wenn $f(t) = 0$ und **inhomogen**, wenn $f(t) \neq 0$.
 
 ### Die vollständige Lösung
 
